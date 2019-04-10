@@ -6,6 +6,6 @@ Ez a repo tartalmazza Nagy-Egri Máté Ferenc beadandóját.
 
 A program és a hozzá tartozó dokumentáció fordíátáshoz szükséges:
 
-- CMake 3.8+
+- [CMake](https://cmake.org/) 3.8+
 - ISO C++14 konform fordító
 - LaTeX fordító
