@@ -6,7 +6,7 @@ if (MSVC)
   string(REGEX REPLACE "/W[0-9]" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 endif (MSVC)
 
-add_executable(${PROJECT_NAME} Main.cpp)
+add_executable(${PROJECT_NAME} src/Main.cpp)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17
                                                  CXX_STANDARD_REQUIRED ON
@@ -14,3 +14,14 @@ set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17
 
 target_compile_options(${PROJECT_NAME} PRIVATE $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wall -Wextra -pedantic>
                                                $<$<CXX_COMPILER_ID:MSVC>:/W4 /permissive->)
+
+# documentation
+include(cmake/UseLATEX.cmake)
+
+add_latex_document(doc/latex_template.tex
+                   CONFIGURE doc/latex_template.tex
+                   TARGET_NAME doc
+                   INPUTS doc/nyilatkozat.tex doc/abeld.bst
+                   BIBFILES doc/references.bib
+                   IMAGE_DIRS img
+                   DEPENDS doc/latex_template.tex)
